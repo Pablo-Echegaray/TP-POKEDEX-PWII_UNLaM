@@ -4,16 +4,16 @@ USE pokedex;
 
 CREATE TABLE IF NOT EXISTS pokemones (
 id INT AUTO_INCREMENT PRIMARY KEY,
-numero_identificador INT UNIQUE,
-imagen VARCHAR(255),
-nombre VARCHAR(100),
-tipo_1 VARCHAR(50),
-tipo_2 VARCHAR(50),
-descripcion TEXT
+numero_identificador INT NOT NULL UNIQUE,
+imagen VARCHAR(255) NOT NULL,
+nombre VARCHAR(50) NOT NULL,
+tipo_1 VARCHAR(100) NOT NULL,
+tipo_2 VARCHAR(100),
+descripcion TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS administradores (
 id INT AUTO_INCREMENT PRIMARY KEY,
-user VARCHAR(50) UNIQUE,
-pass VARCHAR(255)
+user VARCHAR(50) NOT NULL UNIQUE,
+pass VARCHAR(30) NOT NULL
 );
