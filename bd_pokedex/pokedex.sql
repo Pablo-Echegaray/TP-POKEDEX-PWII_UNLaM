@@ -1,0 +1,19 @@
+CREATE DATABASE IF NOT EXISTS pokedex;
+
+USE pokedex;
+
+CREATE TABLE IF NOT EXISTS pokemones (
+id INT AUTO_INCREMENT PRIMARY KEY,
+numero_identificador INT UNIQUE,
+imagen VARCHAR(255),
+nombre VARCHAR(100),
+tipo_1 VARCHAR(50),
+tipo_2 VARCHAR(50),
+descripcion TEXT
+);
+
+CREATE TABLE IF NOT EXISTS administradores (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user VARCHAR(50) UNIQUE,
+pass VARCHAR(255)
+);
