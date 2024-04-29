@@ -6,15 +6,11 @@
                 Pokedex
             </a>
         </h1>
-        <form action="login.php" method="post" class="flex">
-            <label class="pb-1">
-                <input type="text" placeholder="Usuario" name="user" class="form-control">
-            </label>
-            <label class="pt-1">
-                <input type="password" placeholder="Contraseña" name="pass" class="form-control">
-            </label>
-            <button type="submit" class="btn btn-primary mt-2"> Ingresar </button>
-        </form>
+        <div class="p-2">
+            <?php
+            echo "<p class='m-0 fs-4'>Hola ". "<span class='fw-bold'>" .$_SESSION["usuario"]. "</span>" ."</p>";
+            ?>
+        </div>
     </div>
     <form action="" method="get" class="d-flex flex-column align-items-center">
         <h2 class="centrar m-0 fs-4">Busca tu POKEMON!</h2>
