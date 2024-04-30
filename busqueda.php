@@ -14,7 +14,7 @@
 
     if (isset($_GET['buscar'])) {
         $busqueda = $_GET['buscar'];
-        $sql = "SELECT * FROM pokemones WHERE nombre LIKE '%$busqueda%'";
+        $sql = "SELECT * FROM pokemones WHERE nombre LIKE '%$busqueda%' OR tipo_1 LIKE '%$busqueda%' OR numero_identificador = '$busqueda'";
     } else {
         $sql = "SELECT * FROM pokemones";
     }
