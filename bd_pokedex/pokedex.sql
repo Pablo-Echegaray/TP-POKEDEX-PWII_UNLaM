@@ -17,3 +17,5 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 user VARCHAR(50) NOT NULL UNIQUE,
 pass VARCHAR(30) NOT NULL
 );
+
+INSERT INTO `administradores`(`id`, `user`, `pass`) VALUES ('1','pabloR','1357');
