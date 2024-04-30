@@ -20,71 +20,9 @@
 <body>
 <?php include_once "header.php";?>
 <main class="p-4 mt-4">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col" class="text-primary text-center">Imagen</th>
-            <th scope="col" class="text-primary text-center">Tipo</th>
-            <th scope="col" class="text-primary text-center">Numero</th>
-            <th scope="col" class="text-primary text-center">Nombre</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row" class="text-center w-25">
-                <a href="#">
-                    <img src="img/pokemones/bulbasaur.png" class="imagen-pokemon">
-                </a>
-            </th>
-            <td class="text-center">
-                <img src="img/tipos/tipo_planta.png">
-                <img src="img/tipos/tipo_veneno.png">
-            </td>
-            <td class="text-center">
-                0001
-            </td>
-            <td class="text-center">
-                <a href="#" class="text-black text-decoration-none fw-bold"> Bulbasaur </a>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row" class="text-center w-25">
-                <a href="#">
-                    <img src="img/pokemones/ivysaur.png" class="imagen-pokemon">
-                </a>
-            </th>
-            <td class="text-center">
-                <img src="img/tipos/tipo_planta.png">
-                <img src="img/tipos/tipo_veneno.png">
-
-            </td>
-            <td class="text-center">
-                0002
-            </td>
-            <td class="text-center">
-                <a href="#" class="text-black text-decoration-none fw-bold"> Ivysaur </a>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row" class="text-center w-25">
-                <a href="#">
-                    <img src="img/pokemones/venusaur.png" class="imagen-pokemon">
-                </a>
-            </th>
-            <td class="text-center">
-                <img src="img/tipos/tipo_planta.png">
-                <img src="img/tipos/tipo_veneno.png">
-
-            </td>
-            <td class="text-center">
-                0003
-            </td>
-            <td class="text-center">
-                <a href="#" class="text-black text-decoration-none fw-bold"> Venusaur </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+   <?php 
+    include_once "busqueda.php";
+    ?>
 </main>
 <!--
 <footer>
