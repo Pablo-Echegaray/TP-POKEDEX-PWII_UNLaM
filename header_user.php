@@ -15,7 +15,7 @@
     <form action="" method="get" class="d-flex flex-column align-items-center">
         <h2 class="centrar m-0 fs-4">Busca tu POKEMON!</h2>
         <div class="input-group">
-            <input type="search" placeholder="Ingrese el nombre, tipo o número de pokemon" class="form-control w-75 p-3">
+            <input type="search" name="buscar" placeholder="Ingrese el nombre, tipo o número de pokemon" class="form-control w-75 p-3">
             <button type="submit" class="btn text-light fw-bold w-25">¿Quien es este pokemon?</button>
         </div>
     </form>
