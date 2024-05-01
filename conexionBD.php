@@ -7,7 +7,7 @@ $dbname = "pokedex";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Guardo la variable $conn para usarla en busqueda.php
-$_GET['conn'] = $conn;
+$_SESSION['conn'] = $conn;
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
