@@ -12,7 +12,7 @@ function conectarBD() {
     $servername = "localhost";//Donde esta alojado el servidor de base de datos
     $username = "root";//Nombre de usuario
     $password = "";
-    $database = "pw2";//Cual es la baes de datos
+    $database = "pokedex";//Cual es la baes de datos
 
     /******  CREAMOS CONEXION  *******/
 //Crea una conexion a la base de datos y la guarda en una variable
@@ -24,3 +24,4 @@ function conectarBD() {
     }
     return $conn;
 }
+?>
