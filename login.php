@@ -32,4 +32,5 @@ function consultarBD($usuario, $pass){
     $resultado = mysqli_query($conexion,$sql);
 
     return mysqli_num_rows($resultado);
+    mysqli_close($conn);
 }

@@ -27,7 +27,13 @@
 </head>
 <body>
 <?php
-    include_once("header_user.php");
+    session_start();
+    if (isset($_SESSION["usuario"])) {
+        include_once("header_user.php");
+    } else {
+        header("location: index.php");
+        exit();
+    }
 ?>
 <main class="p-4 mt-4">
     <table class="table table-striped">
