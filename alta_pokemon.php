@@ -12,17 +12,22 @@
     <!-- ESTILO -->
     <link rel="stylesheet" href="css/style.css" as="style">
     <style>
-        /* Aplicar estilos cuando el ancho de la pantalla sea de al menos 768px */
         @media (min-width: 768px) {
             .form-flex {
-                display: flex; /* Cambiar a diseño en línea */
+                display: flex;
             }
             .form-flex > div {
-                flex: 1; /* Hacer que cada div ocupe el mismo espacio */
-                margin-right: 10px; /* Espacio entre los elementos */
+                flex: 1;
+                margin-right: 10px;
             }
             .form-flex > div:last-child {
-                margin-right: 0; /* No aplicar margen derecho al último div */
+                margin-right: 0;
+            }
+            .cont-boton{
+                margin: 0 auto!important;
+            }
+            .boton{
+                width: 40%!important;
             }
         }
     </style>
@@ -38,7 +43,7 @@ session_start();
 if (isset($_SESSION["usuario"])) {
     include_once("header_user.php");
 } else {
-    include_once("header.php");
+    header("location: index.php");
     exit();
 }
 ?>
@@ -55,16 +60,21 @@ if (isset($_SESSION["usuario"])) {
                 <input type="text" name="nombre" id="nombre" class="form-control m-1">
             </div>
         </div>
-        <div class="p-2">
-            <label for="pokemon">Imagen del Pokemon:</label>
-            <input type="file" name="pokemon" id="pokemon" class="form-control m-1">
+        <div class="form-flex">
+            <div class="p-2">
+                <label for="pokemon">Imagen del Pokemon:</label>
+                <input type="file" name="pokemon" id="pokemon" class="form-control m-1">
+            </div>
+            <div class="p-2">
+                <label for="tipo1">Tipo del Pokemon:</label>
+                <div class="form-flex">
+                    <input type="file" name="tipo" id="tipo" class="form-control m-1 d-block">
+                </div>
+            </div>
         </div>
         <div class="p-2">
-            <label for="tipo1">Tipo/s del Pokemon:</label>
-            <div class="form-flex">
-                <input type="file" name="tipo1" id="tipo1" class="form-control form-control-sm m-1 d-block">
-                <input type="file" name="tipo2" id="tipo2" class="form-control form-control-sm m-1 d-block">
-            </div>
+            <label for="tipo1">Descripcion:</label>
+            <textarea name="descripcion" class="form-control"></textarea>
         </div>
         <button type="submit" class="boton btn text-light fw-bold w-100 mt-2">Agregar Pokemon</button>
     </form>
