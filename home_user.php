@@ -28,9 +28,10 @@
 
 <body>
 <?php
-    session_start();
+    //session_start();
     if (isset($_SESSION["usuario"])) {
         include_once("header_user.php");
+        include_once("home_user.php");
     } else {
         header("location: index.php");
         exit();
@@ -53,7 +54,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php
+        ?php
         include_once("conexionBD.php");
         include_once ("consultas_sql.php");
         $pokemones = crearConexionBD(obtenerPokemones());

@@ -65,9 +65,8 @@ function actualizar_imagen_pokemon(){
         else{
             move_uploaded_file($file_tmp,$upload_folder."/".$file_name);
             echo "El archivo " . $file_name ." se subio correctamente";
-            // Redirigir automáticamente a la página de carga
-            header("Location: instagramo.php");
-            exit(); // Asegura que el script se detenga después de la redirección
+            header("Location: index.php");
+            exit();
         }
     }
     else{
