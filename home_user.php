@@ -48,6 +48,36 @@
         </tr>
         </thead>
         <tbody>
+        <?php
+        include_once("conexionBD.php");
+        include_once ("consultas_sql.php");
+        $pokemones = crearConexionBD(obtenerPokemones());
+        echo mysqli_num_rows($pokemones);
+        $row = mysqli_fetch_assoc($pokemones);
+
+        if (mysqli_num_rows($pokemones) > 0){
+            while ($row = mysqli_fetch_assoc($pokemones)){
+                echo "<tr> <th scope='row' class='text-center w-25'> <a href='#'>";
+                echo "<img src='". $row['imagen'] . "'" ."class='imagen-pokemon'> </a> </th>";
+                echo "<td class='text-center'> <img src='". $row['tipo'] . "'> </td>";
+                echo " <td class='text-center'>" . $row['id'] . "</td>";
+                echo "<td class='text-center'> <a href='#' class='text-black text-decoration-none fw-bold'>". $row['nombre'] ."</a></td>";
+                echo "<td class='text-center'>  <div class='d-flex justify-content-center mq'> <form action='' method='get'> <button type='submit' class='text-light btn btn-info'>Editar</button></form>";
+                echo "<form action='' method='get'> <button type='submit' class='text-light btn btn-danger' style='background-color: firebrick!important; border-color: firebrick!important;'>Eliminar</button></form></div></td></tr>";
+            }
+        } else {
+            echo "No se encontraron resultados";
+        }
+        /*
+        echo "<tr> <th scope='row' class='text-center w-25'> <a href='#'>";
+        echo "<img src='img/pokemones/bulbasaur.png' class='imagen-pokemon'> </a> </th>";
+        echo "<td class='text-center'> <img src='img/tipos/tipo_planta.png'> </td>";
+        echo " <td class='text-center'> 001 </td>";
+        echo "<td class='text-center'> <a href='#' class='text-black text-decoration-none fw-bold'>". $row['nombre'] ."</a></td>";
+            // EDITAR y ELIMINAR POKEMON
+        echo "<td class='text-center'>  <div class='d-flex justify-content-center mq'> <form action='' method='get'> <button type='submit' class='text-light btn btn-info'>Editar</button></form>";
+        echo "<form action='' method='get'> <button type='submit' class='text-light btn btn-danger' style='background-color: firebrick!important; border-color: firebrick!important;'>Eliminar</button></form></div></td></tr>";
+        ?>
         <tr>
             <th scope="row" class="text-center w-25">
                 <a href="#">
@@ -146,6 +176,8 @@
                 </div>
             </td>
         </tr>
+        */
+        ?>
         </tbody>
     </table>
 
