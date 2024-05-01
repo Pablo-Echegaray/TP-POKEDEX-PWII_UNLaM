@@ -6,7 +6,7 @@
                 Pokedex
             </a>
         </h1>
-        <form action="" method="post" class="flex">
+        <form action="login.php" method="post" class="flex">
             <label class="pb-1">
                 <input type="text" placeholder="Usuario" name="user" class="form-control">
             </label>

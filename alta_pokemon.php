@@ -33,7 +33,15 @@
     <title>Pokedex</title>
 </head>
 <body>
-<?php include_once "header.php";?>
+<?php
+session_start();
+if (isset($_SESSION["usuario"])) {
+    include_once("header_user.php");
+} else {
+    include_once("header.php");
+    exit();
+}
+?>
 <main class="p-2 mt-2">
     <h3 class="text-center m-0">Agrega tu pokemon</h3>
     <form action="funciones.php" method="post" enctype="multipart/form-data">
@@ -58,7 +66,7 @@
                 <input type="file" name="tipo2" id="tipo2" class="form-control form-control-sm m-1 d-block">
             </div>
         </div>
-        <button type="submit" class="btn text-light fw-bold w-100 mt-2">Agregar Pokemon</button>
+        <button type="submit" class="boton btn text-light fw-bold w-100 mt-2">Agregar Pokemon</button>
     </form>
 </main>
 <!--
