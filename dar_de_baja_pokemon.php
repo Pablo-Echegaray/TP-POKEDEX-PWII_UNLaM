@@ -18,4 +18,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     echo "ID de Pokémon no válido.";
     exit;
 }
+//Actualmente tenemos 129 pokemones en la BD, hasta el num_id 130,
 ?>
+
+

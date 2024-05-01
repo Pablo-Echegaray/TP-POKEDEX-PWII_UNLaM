@@ -22,7 +22,9 @@
 
 <form method="post">
     <label for="nombre_pokemon">Nombre del Pokémon:</label><br>
-    <input type="text" id="nombre_pokemon" name="nombre_pokemon" value="<?php echo $pokemon['nombre_pokemon']; ?>"><br>
+    <input type="text" id="nombre_pokemon" name="nombre_pokemon" value=""><br>
+    <label for="img_pokemon">Imágen del Pokémon:</label><br>
+    <input type="file" name="img_pokemon" id="img_pokemon">
 
     <!-- Otros campos del formulario para modificar -->
 
@@ -32,6 +34,12 @@
 <footer>
 USAR INCLUDE_ONCE
 </footer>
+numero_identificador INT NOT NULL UNIQUE,
+imagen VARCHAR(255) NOT NULL, (path img)
+nombre VARCHAR(50) NOT NULL,
+tipo VARCHAR(100) NOT NULL, (path img)
+descripcion TEXT NOT NULL
+<input type="text" id="nombre_pokemon" name="nombre_pokemon" value="php echo $pokemon['nombre_pokemon'];"><br>
 -->
 </body>
 </html>
