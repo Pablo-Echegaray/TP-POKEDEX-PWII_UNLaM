@@ -20,6 +20,7 @@
 <body>
 <?php include_once "header.php";?>
 <main class="p-4 mt-4">
+<!--
     <form action="" method="get" class="d-flex flex-column align-items-center">
         <h2 class="centrar m-0 fs-4">Busca tu POKEMON!</h2>
         <div class="input-group">
@@ -90,12 +91,17 @@
                 <a href="#" class="text-black text-decoration-none fw-bold"> Venusaur </a>
             </td>
             <td class="text-center">
-                <a href="modificar_pokemon.php?id=<?php echo $pokemon['id']; ?>">Modificar</a>
-                <a href="dar_de_baja_pokemon.php?id=<?php echo $pokemon['id']; ?>">Eliminar</a>
+                <a href="modificar_pokemon.php?id=php echo $pokemon['id']; ?>">Modificar</a>
+                <a href="dar_de_baja_pokemon.php?id=php echo $pokemon['id']; ?>">Eliminar</a>
             </td>
         </tr>
         </tbody>
     </table>
+--->
+   <?php 
+    include_once "busqueda.php";
+    ?>
+
 </main>
 <!--
 <footer>
