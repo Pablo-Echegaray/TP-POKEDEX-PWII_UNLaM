@@ -20,9 +20,88 @@
 <body>
 <?php include_once "header.php";?>
 <main class="p-4 mt-4">
+<!--
+    <form action="" method="get" class="d-flex flex-column align-items-center">
+        <h2 class="centrar m-0 fs-4">Busca tu POKEMON!</h2>
+        <div class="input-group">
+            <input type="search" placeholder="Ingrese el nombre, tipo o número de pokemon" class="form-control w-75 p-3">
+            <button type="submit" class="btn text-light fw-bold w-25">¿Quien es este pokemon?</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col" class="text-primary text-center">Imagen</th>
+            <th scope="col" class="text-primary text-center">Tipo</th>
+            <th scope="col" class="text-primary text-center">Numero</th>
+            <th scope="col" class="text-primary text-center">Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row" class="text-center w-25">
+                <a href="#">
+                    <img src="img/pokemones/bulbasaur.png" class="imagen-pokemon">
+                </a>
+            </th>
+            <td class="text-center">
+                <img src="img/tipos/tipo_planta.png">
+                <img src="img/tipos/tipo_veneno.png">
+            </td>
+            <td class="text-center">
+                0001
+            </td>
+            <td class="text-center">
+                <a href="#" class="text-black text-decoration-none fw-bold"> Bulbasaur </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" class="text-center w-25">
+                <a href="#">
+                    <img src="img/pokemones/ivysaur.png" class="imagen-pokemon">
+                </a>
+            </th>
+            <td class="text-center">
+                <img src="img/tipos/tipo_planta.png">
+                <img src="img/tipos/tipo_veneno.png">
+
+            </td>
+            <td class="text-center">
+                0002
+            </td>
+            <td class="text-center">
+                <a href="#" class="text-black text-decoration-none fw-bold"> Ivysaur </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" class="text-center w-25">
+                <a href="#">
+                    <img src="img/pokemones/venusaur.png" class="imagen-pokemon">
+                </a>
+            </th>
+            <td class="text-center">
+                <img src="img/tipos/tipo_planta.png">
+                <img src="img/tipos/tipo_veneno.png">
+
+            </td>
+            <td class="text-center">
+                0003
+            </td>
+            <td class="text-center">
+                <a href="#" class="text-black text-decoration-none fw-bold"> Venusaur </a>
+            </td>
+            <td class="text-center">
+                <a href="modificar_pokemon.php?id=php echo $pokemon['id']; ?>">Modificar</a>
+                <a href="dar_de_baja_pokemon.php?id=php echo $pokemon['id']; ?>">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+--->
    <?php 
     include_once "busqueda.php";
     ?>
+
 </main>
 <!--
 <footer>
@@ -32,3 +111,11 @@ USAR INCLUDE_ONCE
 </body>
 </html>
 
+<!--
+id_autoincremental,
+numero_pokemon,
+nombre_pokemon,
+ruta_imagen_pokemon,
+ruta_tipo1_pokemon,
+ruta_tipo2_pokemon
+-->
