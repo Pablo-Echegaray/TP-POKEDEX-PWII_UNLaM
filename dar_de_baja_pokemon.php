@@ -1,7 +1,8 @@
 <?php
 // Conexión a la base de datos (debes implementar tu propia lógica de conexión)
-include_once("conexion.php");
-
+//include_once("conexion.php");
+echo "<h1>Aún en desarrollo, vuelva mas tarde!</>"
+/*
 // Verifica si se recibió un ID válido del Pokémon a dar de baja
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     $pokemon_id = $_GET['id'];
@@ -19,6 +20,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit;
 }
 //Actualmente tenemos 129 pokemones en la BD, hasta el num_id 130,
+*/
 ?>
 
 
