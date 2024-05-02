@@ -19,35 +19,48 @@
 </head>
 <body>
 <?php include_once "header.php";?>
-<main class="p-4 mt-4 info-flex">
-    <div>
-        <img src="img/pokemones/bulbasaur.png" class="w-100 info-img">
-    </div>
-    <div class="d-flex flex-column justify-content-evenly align-items-center">
-        <div>
-            <img src="img/tipos/tipo_planta.png">
-            <img src="img/tipos/tipo_veneno.png">
-        </div>
-        <h3>Bulbasaur</h3>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-            Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-            Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue,
-            euismod non, mi.
-        </p>
-        <p>
-            Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl
-            sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in,
-            pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.
-        </p>
-        <p>
-            Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl
-            sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in,
-            pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.
-        </p>
-    </div>
 
-</main>
+<?php
+/*include_once "conexionBD.php";*/
+$conn = new mysqli("localhost", "root", "", "pokedex");
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+if(isset($_GET['id'])) {
+    $pokemon_id = $_GET['id'];
+
+    $result = mysqli_query($conn, "SELECT * FROM pokemones WHERE id = $pokemon_id");
+
+    if(mysqli_num_rows($result) > 0) {
+        $pokemon = mysqli_fetch_assoc($result);
+        ?>
+
+        <main class="p-4 mt-4 info-flex">
+            <div> <!--imagen del pokemon-->
+                <img src="<?php echo $pokemon['imagen']; ?>" class="w-100 info-img">
+            </div>
+            <div class="d-flex flex-column justify-content-evenly align-items-center">
+                <div> <!--tipo-->
+                    <img src="<?php echo $pokemon['tipo']; ?>">
+                </div>
+                <h3><?php echo $pokemon['numero_identificador']; ?> <?php echo $pokemon['nombre']; ?></h3> <!--número y nombre-->
+                <p> <!--descripcion-->
+                    <?php echo $pokemon['descripcion']; ?>
+                </p>
+            </div>
+
+        </main>
+
+        <?php
+    } else {
+        echo 'No se encontró el Pokémon.';
+    }
+    mysqli_free_result($result);
+}
+mysqli_close($conn);
+?>
+
 <!--
 <footer>
 USAR INCLUDE_ONCE
@@ -55,5 +68,3 @@ USAR INCLUDE_ONCE
 -->
 </body>
 </html>
-
-
