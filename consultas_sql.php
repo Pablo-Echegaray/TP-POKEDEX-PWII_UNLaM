@@ -10,4 +10,8 @@ function buscarPokemones($busqueda){
     return $query;
 }
 
+function obtenerPokemon($pokemon_id){
+    $query = "SELECT * FROM pokemones WHERE id = $pokemon_id";
+    return $query;
+}
 ?>
