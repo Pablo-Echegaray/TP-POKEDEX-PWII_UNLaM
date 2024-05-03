@@ -61,7 +61,7 @@
                     echo "</form>";
 
                     // ELIMINAR POKEMON
-                    echo "<form action='eliminar.php' method='post'>";
+                    echo "<form action='dar_de_baja_pokemon.php' method='post'>";
                     echo "<input type='hidden' name='pokemon_id' value='" . $row['id'] . "'>";
                     echo "<button type='submit' class='text-light btn btn-danger' style='background-color: firebrick!important; border-color: firebrick!important;'>Eliminar</button>";
                     echo "</form>";
