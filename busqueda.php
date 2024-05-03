@@ -32,6 +32,7 @@
     if(!is_string($result)){
         if (mysqli_num_rows($result) > 0 ) {
             while ($row = mysqli_fetch_assoc($result)) {
+                echo "<a href='info_pokemon.php?id=" . $row['id'] . "'>";
                 echo "<tr>";
                 echo "<th scope='row' class='text-center w-25'><img src='" . $row['imagen'] . "' class='imagen-pokemon'></th>";
                 echo "<td class='text-center'>";
@@ -41,8 +42,8 @@
 
                 echo "</td>";
                 echo "<td class='text-center'>" . $row['numero_identificador'] . "</td>";
-                echo "<td class='text-center'><a href='#' class='text-black text-decoration-none fw-bold'>" . $row['nombre'] . "</a></td>";
-                echo "</td>";
+                echo "<td class='text-center'><a href='info_pokemon.php?id=" . $row['id'] . "' class='text-black text-decoration-none fw-bold'>" . $row['nombre'] . "</a></td>";
+                echo "</td></a>";
 
                 if (isset($_SESSION["usuario"])) {
                     echo "<td class='text-center'>";
