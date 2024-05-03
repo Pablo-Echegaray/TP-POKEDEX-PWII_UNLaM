@@ -11,12 +11,17 @@ function crearConexionBD($query){
     }
 
     $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) > 0){
+    if (!is_bool($result)){
+        if (mysqli_num_rows($result) > 0){
+            $resultado = $result;
+        }
+        else{
+            $resultado = "Error al ejecutar la consulta: " . mysqli_error($conn);
+        }
+    }else{
         $resultado = $result;
     }
-    else{
-        $resultado = "Error al ejecutar la consulta: " . mysqli_error($conn);
-    }
+
     mysqli_close($conn);
     return $resultado;
 }
