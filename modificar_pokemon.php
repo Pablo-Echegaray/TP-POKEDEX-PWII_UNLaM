@@ -1,89 +1,101 @@
 <?php
-// Conexión a la base de datos
-//include_once("conexionBD.php");
-echo "<h1>Aún en desarrollo, vuelva mas tarde!</>"
-/*
-function actualizar_pokemon($conexion){
-    // Verifica si se recibió un ID válido del Pokémon a modificar
-    if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-        $pokemon_id = $_GET['id'];
 
-        // Consulta la base de datos para obtener los detalles del Pokémon
-        $query = "SELECT * FROM pokemones WHERE id = $pokemon_id";
-        $result = mysqli_query($conexion, $query);
+include_once "conexionBD.php";
+include_once "consultas_sql.php";
+//echo "<h1>Aún en desarrollo, vuelva mas tarde!</>";
 
-        if(mysqli_num_rows($result) == 1) {
-            $pokemon = mysqli_fetch_assoc($result);
-        } else {
-            // Manejar el caso en el que no se encuentre el Pokémon con el ID dado
-            echo "No se encontró el Pokémon.";
-            exit;
+function validarPokemon(){
+    if(isset($_POST['pokemon_id']) && is_numeric($_POST['pokemon_id'])){
+        $pokemon_id = $_POST['pokemon_id'];
+        $result = crearConexionBD(obtenerPokemon($pokemon_id));
+        if(!is_string($result) && !is_bool($result)){
+            if(mysqli_num_rows($result) == 1) {
+                $pokemon = mysqli_fetch_assoc($result);
+                //echo json_encode($pokemon);
+                return $pokemon;
+            }else{
+                echo "No se encontró el Pokémon.";
+                return false;
+            }
+        }else{
+            echo "Consulta inválida.";
+            return false;
         }
-    } else {
-        // Manejar el caso en el que no se proporcionó un ID válido
+    }else{
         echo "ID de Pokémon no válido.";
-        exit;
-    }
-
-// Procesamiento del formulario de modificación
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Recibe los datos del formulario
-        $nombre_pokemon = $_POST['nombre_pokemon'];
-        // Aquí puedes recibir y procesar otros campos del formulario
-
-        // Actualiza los detalles del Pokémon en la base de datos
-        $update_query = "UPDATE pokemon SET nombre_pokemon = '$nombre_pokemon' WHERE id_autoincremental = $pokemon_id";
-        mysqli_query($conexion, $update_query);
-
-        // Redirecciona a la página principal después de la modificación
-        header("Location: index.php");
-        exit;
+        return false;
     }
 }
+function generar_pokemon(){
+    $pokemonValido = validarPokemon();
+    $imagenPokemon = actualizar_imagen_pokemon($pokemonValido['imagen'], 'pokemon', 'pokemones');
+    $imagenTipo = actualizar_imagen_pokemon($pokemonValido['tipo'], 'tipo', 'tipos');
+    if(!is_bool($pokemonValido)){
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $pokemon = array(
+                "id" => $pokemonValido['id'],
+                "numero" => $_POST['numero'],
+                "nombre"   => $_POST['nombre'],
+                "pokemon"  => $imagenPokemon,
+                "tipo"  => $imagenTipo,
+                "descripcion"  => $_POST['descripcion']
+            );
 
-function actualizar_imagen_pokemon(){
+        }else{
+            $pokemon = "Error inesperado al validar los datos.";
+        }
+    }else{
+        $pokemon = "Error inesperado al validar los datos. Falló la consulta.";
+    }
+    echo json_encode($pokemon);
+    return$pokemon;
+}
+
+function actualizar_imagen_pokemon($actual_path_img, $name, $folder){
     // Verificar si se ha enviado un archivo
-    if (isset($_FILES['img_pokemon']) && $_FILES['img_pokemon']['size'] > 0){
-        $file_name = $_FILES['img_pokemon']['name'];
-        $file_size = $_FILES['img_pokemon']['size'];
-        $file_tmp = $_FILES['img_pokemon']['tmp_name'];
-        $file_type = $_FILES['img_pokemon']['type'];
-        /*
-        echo $file_name;
-        echo $file_size;
-        echo $file_tmp;
-        echo $file_type;
-        */
+    if (isset($_FILES[$name]) && $_FILES[$name]['size'] > 0){
+        $file_name = $_FILES[$name]['name'];
+        $file_size = $_FILES[$name]['size'];
+        $file_tmp = $_FILES[$name]['tmp_name'];
+        $file_type = $_FILES[$name]['type'];
 
-        // Carpeta donde se moverá el archivo
-        /*
-        $upload_folder = '.img/pokemones';
+        $upload_folder = './img/' . $folder;
+        $path_img = $upload_folder."/".$file_name;
 
-        // Mover el archivo a la carpeta especificada
-        if (file_exists($upload_folder. "/" .$file_name)){
-            echo $_FILES['archivo']['name'] . " ya existe";
+        if(move_uploaded_file($file_tmp,$path_img)){
+        echo "El archivo " . $file_name ." se subió correctamente";
+        }else{
+            echo "El archivo " . $file_name ." no se pudo subir.";
         }
-        else{
-            move_uploaded_file($file_tmp,$upload_folder."/".$file_name);
-            echo "El archivo " . $file_name ." se subio correctamente";
-            header("Location: index.php");
-            exit();
-        }
+        //exit();
+
     }
     else{
-        echo "Por favor seleccione un archivo";
+        $path_img = $actual_path_img;
     }
-
+    echo "path img : ".$path_img . "<br>";
+    return $path_img;
 }
 
-// Incluir el formulario de modificación con los detalles del Pokémon prellenados
-include("formulario_modificar_pokemon.php");
-*/
-/*
-numero_identificador INT NOT NULL UNIQUE,
-imagen VARCHAR(255) NOT NULL, (path img)
-nombre VARCHAR(50) NOT NULL,
-tipo VARCHAR(100) NOT NULL, (path img)
-descripcion TEXT NOT NULL
-  */
+function actualizarPokemon(){
+    $pokemon = generar_pokemon();
+    if(!is_string($pokemon)){
+       $result = crearConexionBD(updatePokemon($pokemon));
+       if(is_bool($result)){
+           if($result == true){
+               echo "Pokemon actualizado correctamente.";
+               header("Location: index.php");
+               exit;
+           }else{
+               echo "Hubo un error al actualizar el pokemon.";
+           }
+       }else{
+           echo "Error al actualizar el pokemon. La consulta no devolvió un booleano.";
+       }
+    }else{
+        echo "Pokemon no actualizado. La consulta devolvío un string.";
+    }
+}
+
+actualizarPokemon();
 ?>

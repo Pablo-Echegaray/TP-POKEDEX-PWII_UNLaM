@@ -13,16 +13,11 @@
     include_once 'consultas_sql.php';
 
     if (isset($_GET['buscar'])) {
-        //$busqueda = $_GET['buscar'];
         $busqueda = buscarPokemones($_GET['buscar']);
-        //$sql = "SELECT * FROM pokemones   WHERE nombre LIKE '%$busqueda%' OR tipo LIKE '%$busqueda%' OR numero_identificador = '$busqueda'";
     } else {
         $busqueda = obtenerPokemones();
     }
 
-    //$conn = $_SESSION['conn'];
-
-    //$result = mysqli_query($conn, $sql);
     $result = crearConexionBD($busqueda);
     echo "<table class='table table-striped'>
                 <thead>
@@ -36,8 +31,6 @@
                 <tbody>";
     if(!is_string($result)){
         if (mysqli_num_rows($result) > 0 ) {
-            //echo "Pokemon no encontrado";
-            //$result = mysqli_query($conn, "SELECT * FROM pokemones");
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<th scope='row' class='text-center w-25'><img src='" . $row['imagen'] . "' class='imagen-pokemon'></th>";
