@@ -20,4 +20,17 @@ function crearConexionBD($query){
     mysqli_close($conn);
     return $resultado;
 }
+function crearConex(){
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "pokedex";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
+
+    return $conn;
+}
 ?>
