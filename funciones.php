@@ -59,7 +59,7 @@ function agregarPokemonBD($num,$nombre,$img_pokemon,$img_tipo,$descripcion){
     $ruta_tipo = 'img/tipos/'.$img_tipo;
     $agregar = "
         INSERT INTO pokemones
-            (`numero_identificador`, `imagen`, `nombre`, `tipo_1`, `descripcion`) 
+            (`numero_identificador`, `imagen`, `nombre`, `tipo`, `descripcion`) 
         VALUES
             ('$num', '" . $ruta_pokemon . "', '$nombre', '" . $ruta_tipo . "', '$descripcion')
         ";
