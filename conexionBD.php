@@ -9,7 +9,7 @@ function crearConexionBD($query){
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
     }
-    echo "Conexión exitosa";
+
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0){
         $resultado = $result;

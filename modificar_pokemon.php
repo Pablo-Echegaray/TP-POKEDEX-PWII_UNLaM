@@ -1,8 +1,8 @@
 <?php
 // Conexión a la base de datos
-include_once("conexionBD.php");
-global $conn;
-
+//include_once("conexionBD.php");
+echo "<h1>Aún en desarrollo, vuelva mas tarde!</>"
+/*
 function actualizar_pokemon($conexion){
     // Verifica si se recibió un ID válido del Pokémon a modificar
     if(isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -56,6 +56,7 @@ function actualizar_imagen_pokemon(){
         */
 
         // Carpeta donde se moverá el archivo
+        /*
         $upload_folder = '.img/pokemones';
 
         // Mover el archivo a la carpeta especificada
@@ -77,7 +78,7 @@ function actualizar_imagen_pokemon(){
 
 // Incluir el formulario de modificación con los detalles del Pokémon prellenados
 include("formulario_modificar_pokemon.php");
-
+*/
 /*
 numero_identificador INT NOT NULL UNIQUE,
 imagen VARCHAR(255) NOT NULL, (path img)

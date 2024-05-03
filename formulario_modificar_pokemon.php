@@ -18,18 +18,54 @@
     <title>Pokedex</title>
 </head>
 <body>
-<?php include_once "header.php";?>
+<?php
+    include_once "header.php";
+    include_once "conexionBD.php";
+    include_once "consultas_sql.php";
+    echo $_POST['pokemon_id'];
+    $pokemon = null;
+    if(isset($_POST['pokemon_id']) && is_numeric($_POST['pokemon_id'])) {
+        $pokemon_id = $_POST['pokemon_id'];
+        $result = crearConexionBD(obtenerPokemon($pokemon_id));
+        if(!is_string($result)) {
+            $pokemon = mysqli_fetch_assoc($result);
+            echo $pokemon['nombre'];
+        }
+    }
 
-<form method="post">
-    <label for="nombre_pokemon">Nombre del Pokémon:</label><br>
-    <input type="text" id="nombre_pokemon" name="nombre_pokemon" value=""><br>
-    <label for="img_pokemon">Imágen del Pokémon:</label><br>
-    <input type="file" name="img_pokemon" id="img_pokemon">
-
-    <!-- Otros campos del formulario para modificar -->
-
-    <input type="submit" value="Guardar cambios">
-</form>
+?>
+<main class="p-2 mt-2">
+    <h3 class="text-center m-0">Modificar pokemon</h3>
+    <form action="modificar_pokemon.php" method="post" enctype="multipart/form-data">
+        <div class="form-flex">
+            <div class="p-2">
+                <label for="numero">Numero:</label>
+                <input type="number" name="numero" id="numero" class="form-control m-1" value="<?php echo $pokemon['numero_identificador']; ?>">
+            </div>
+            <div class="p-2">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control m-1" value="<?php echo $pokemon['nombre']; ?>">
+            </div>
+        </div>
+        <div class="form-flex">
+            <div class="p-2">
+                <label for="pokemon">Imagen del Pokemon:</label>
+                <input type="file" name="pokemon" id="pokemon" class="form-control m-1" value="<?php echo "." . $pokemon['imagen']; ?>">
+            </div>
+            <div class="p-2">
+                <label for="tipo">Tipo del Pokemon:</label>
+                <div class="form-flex">
+                    <input type="file" name="tipo" id="tipo" class="form-control m-1 d-block" value="<?php echo $pokemon['tipo']; ?>">
+                </div>
+            </div>
+        </div>
+        <div class="p-2">
+            <label for="tipo1">Descripcion:</label>
+            <textarea name="descripcion" class="form-control"><?php echo $pokemon['descripcion'] ?></textarea>
+        </div>
+        <button type="submit" class="boton btn text-light fw-bold w-100 mt-2">Modificar Pokemon</button>
+    </form>
+</main>
 <!--
 <footer>
 USAR INCLUDE_ONCE
