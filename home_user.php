@@ -11,6 +11,8 @@
     <!-- ESTILO -->
     <link rel="stylesheet" href="css/style.css" as="style">
     <style>
+        .mq-tip{ width: 100%!important;}
+        @media (min-width: 768px) { .mq-tip{ width: 20%!important;} }
         @media (max-width: 768px) {
             .mq {
                 display: flex;
