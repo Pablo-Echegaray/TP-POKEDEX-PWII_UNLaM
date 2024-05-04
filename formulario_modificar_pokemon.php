@@ -29,7 +29,7 @@
         $result = crearConexionBD(obtenerPokemon($pokemon_id));
         if(!is_string($result)) {
             $pokemon = mysqli_fetch_assoc($result);
-            echo $pokemon['nombre'];
+            //echo $pokemon['nombre'];
         }
     }
 
@@ -40,6 +40,7 @@
         <div class="form-flex">
             <div class="p-2">
                 <label for="numero">Numero:</label>
+                <input type='hidden' name='pokemon_id' value="<?php echo $pokemon['id']; ?>">
                 <input type="number" name="numero" id="numero" class="form-control m-1" value="<?php echo $pokemon['numero_identificador']; ?>">
             </div>
             <div class="p-2">
@@ -49,33 +50,39 @@
         </div>
         <div class="form-flex">
             <div class="p-2">
-                <label for="pokemon">Imagen del Pokemon:</label>
-                <input type="file" name="pokemon" id="pokemon" class="form-control m-1" value="<?php echo "." . $pokemon['imagen']; ?>">
+                <label for="pokemon">Imagen Actual del Pokemon:</label><br>
+                <?php
+                $rutaImagenPreseleccionada = $pokemon['imagen'];
+                echo '<img src="' . $rutaImagenPreseleccionada . '" alt="imagen_preseleccionada" width="100">';
+                ?>
             </div>
             <div class="p-2">
-                <label for="tipo">Tipo del Pokemon:</label>
+                <label for="pokemon">Cargar Nueva Imagen del Pokemon:</label>
+                <input type="file" name="pokemon" id="pokemon" class="form-control m-1">
+            </div>
+            <div class="p-2">
+                <label for="tipo">Tipo Actual del Pokemon:</label>
                 <div class="form-flex">
-                    <input type="file" name="tipo" id="tipo" class="form-control m-1 d-block" value="<?php echo $pokemon['tipo']; ?>">
+                    <?php
+                    $rutaTipoPreseleccionada = $pokemon['tipo'];
+                    echo '<img src="' . $rutaTipoPreseleccionada . '" alt="imagen_preseleccionada" width="100">';
+                    ?>
+                </div>
+            </div>
+            <div class="p-2">
+                <label for="tipo">Cargar Nuevo Tipo del Pokemon:</label>
+                <div class="form-flex">
+                    <input type="file" name="tipo" id="tipo" class="form-control m-1 d-block">
                 </div>
             </div>
         </div>
         <div class="p-2">
-            <label for="tipo1">Descripcion:</label>
+            <label for="descripcion">Descripcion:</label>
             <textarea name="descripcion" class="form-control"><?php echo $pokemon['descripcion'] ?></textarea>
         </div>
         <button type="submit" class="boton btn text-light fw-bold w-100 mt-2">Modificar Pokemon</button>
     </form>
 </main>
-<!--
-<footer>
-USAR INCLUDE_ONCE
-</footer>
-numero_identificador INT NOT NULL UNIQUE,
-imagen VARCHAR(255) NOT NULL, (path img)
-nombre VARCHAR(50) NOT NULL,
-tipo VARCHAR(100) NOT NULL, (path img)
-descripcion TEXT NOT NULL
-<input type="text" id="nombre_pokemon" name="nombre_pokemon" value="php echo $pokemon['nombre_pokemon'];"><br>
--->
+
 </body>
 </html>

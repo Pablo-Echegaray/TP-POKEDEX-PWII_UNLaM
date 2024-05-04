@@ -22,20 +22,7 @@
     include_once "header.php";
     include_once "conexionBD.php";
     include_once "consultas_sql.php";
-/*
-$conn = new mysqli("localhost", "root", "", "pokedex");
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
 
-if(isset($_GET['id'])) {
-    $pokemon_id = $_GET['id'];
-
-    $result = mysqli_query($conn, "SELECT * FROM pokemones WHERE id = $pokemon_id");
-
-    if(mysqli_num_rows($result) > 0) {
-        $pokemon = mysqli_fetch_assoc($result);
-*/
 if(isset($_GET['id'])) {
     $pokemon_id = $_GET['id'];
     $query = obtenerPokemon($pokemon_id);

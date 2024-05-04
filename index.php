@@ -11,6 +11,9 @@
           crossorigin="anonymous">
     <!-- ESTILO -->
     <link rel="stylesheet" href="css/style.css" as="style">
+    <style>
+        @media (min-width: 768px) { .mq-tip{ width: 20%!important;} }
+    </style>
     <!-- FUENTE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
