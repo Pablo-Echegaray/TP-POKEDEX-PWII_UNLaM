@@ -43,7 +43,7 @@
         echo "<td class='text-center'>";
 
         $tipo = $row['tipo'];
-        echo "<img src='" . $tipo . "'>";
+        echo "<img src='" . $tipo . "' class='imagen-pokemon'>";
 
         echo "</td>";
         echo "<td class='text-center'>" . $row['numero_identificador'] . "</td>";
