@@ -38,7 +38,7 @@
     }
 
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
+        echo "<tr onclick=\"window.location='info_pokemon.php?id=" . $row['id'] . "'\" style=\"cursor: pointer;\">";
         echo "<th scope='row' class='text-center w-25'><img src='" . $row['imagen'] . "' class='imagen-pokemon'></th>";
         echo "<td class='text-center'>";
 
@@ -47,7 +47,8 @@
 
         echo "</td>";
         echo "<td class='text-center'>" . $row['numero_identificador'] . "</td>";
-        echo "<td class='text-center'><a href='info_pokemon.php?id=" . $row['id'] . "' class='text-black text-decoration-none fw-bold'>" . $row['nombre'] . "</a></td>";        echo "</td>";
+        echo "<td class='text-center fw-bold'>" . $row['nombre'] . "</td>";
+        echo "</td>";
         echo "</td>";
 
         if (isset($_SESSION["usuario"])) {
