@@ -63,10 +63,5 @@ if(isset($_GET['id'])) {
 
 ?>
 
-<!--
-<footer>
-USAR INCLUDE_ONCE
-</footer>
--->
 </body>
 </html>

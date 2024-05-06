@@ -2,7 +2,6 @@
 
 include_once "conexionBD.php";
 include_once "consultas_sql.php";
-//echo "<h1>Aún en desarrollo, vuelva mas tarde!</>";
 
 function validarPokemon(){
     if(isset($_POST['pokemon_id']) && is_numeric($_POST['pokemon_id'])){
