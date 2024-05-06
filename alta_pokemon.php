@@ -79,11 +79,7 @@ if (isset($_SESSION["usuario"])) {
         <button type="submit" class="boton btn text-light fw-bold w-100 mt-2">Agregar Pokemon</button>
     </form>
 </main>
-<!--
-<footer>
-USAR INCLUDE_ONCE
-</footer>
--->
+
 </body>
 </html>
 

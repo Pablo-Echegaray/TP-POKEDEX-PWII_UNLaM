@@ -1,8 +1,4 @@
 <?php
-/*
- * Funciones que faltan:
- * Verificar que el numero y/o nombre del pokemon no este en la BD. Esto en "validarNumero"
- * */
 function validarNumero($numeroPokemon){
     if (isset($numeroPokemon) && $numeroPokemon>0){
         return $numeroPokemon;
@@ -94,30 +90,6 @@ function agregarPokemonBD($num,$nombre,$img_pokemon,$img_tipo,$descripcion){
         die("No se agrego el pokemon");
     }
 }
-
-/*function mostrarPokemones($conexion){
-    $sql = "SELECT * FROM pokemones";
-    $result = mysqli_query($conexion, $sql);
-
-    if (mysqli_num_rows($result) > 0){
-        echo "<table>";
-            echo "<tr><th>Imagen</th><th>Tipo</th><th>Numero</th><th>Nombre</th></tr>";
-        while ($row = mysqli_fetch_assoc($result)){
-            echo "<tr>";
-
-            echo "<td><img src='" . $row["imagen"] . "'></td>";
-            echo "<td><img src='" . $row["tipo_1"] . "'></td>";
-
-            echo "<td>". $row["numero_identificador"] ."</td>";
-            echo "<td>". $row["nombre"] ."</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "No se encontraron resultados";
-    }
-    mysqli_close($conexion);
-}*/
 
 $numero = validarNumero($_POST["numero"]);
 $nombre = validarNombre($_POST["nombre"]);
