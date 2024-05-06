@@ -44,7 +44,7 @@
 
         $tipo = $row['tipo'];
 
-        echo "<img class='mq-tip w-50' src='" . $tipo . "'>";
+        echo "<img src='" . $tipo . "' class='imagen-pokemon'>";
 
         echo "</td>";
         echo "<td class='text-center'>" . $row['numero_identificador'] . "</td>";
