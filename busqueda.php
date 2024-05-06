@@ -72,8 +72,6 @@
     }
     echo "</tbody></table>";
 
-    mysqli_close($conn);
-
     ?>
 
 </body>
