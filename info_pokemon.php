@@ -11,6 +11,11 @@
           crossorigin="anonymous">
     <!-- ESTILO -->
     <link rel="stylesheet" href="css/style.css" as="style">
+    <style>
+        .img-tipo{
+            max-width: 100%;
+        }
+    </style>
     <!-- FUENTE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +43,7 @@ if(isset($_GET['id'])) {
             </div>
             <div class="d-flex flex-column justify-content-evenly align-items-center">
                 <div> <!--tipo-->
-                    <img src="<?php echo $pokemon['tipo']; ?>">
+                    <img class="img-tipo" src="<?php echo $pokemon['tipo']; ?>">
                 </div>
                 <h3><?php echo $pokemon['numero_identificador']; ?> <?php echo $pokemon['nombre']; ?></h3> <!--número y nombre-->
                 <p> <!--descripcion-->
@@ -58,10 +63,5 @@ if(isset($_GET['id'])) {
 
 ?>
 
-<!--
-<footer>
-USAR INCLUDE_ONCE
-</footer>
--->
 </body>
 </html>
