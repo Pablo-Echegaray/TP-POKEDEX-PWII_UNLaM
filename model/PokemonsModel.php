@@ -14,11 +14,14 @@ class PokemonsModel
         return $this->database->query("SELECT * FROM pokemones");
     }
 
-    public function addPokemones($num, $nombre, $img_pokemon, $img_tipo, $descripcion)
+    public function addPokemones($num, $pokemon, $nombre, $tipo, $descripcion)
     {
-        $this->database->execute("INSERT INTO `pokemones`(`numero_identificador`, `imagen`, `nombre`, `tipo`, `descripcion`)  
-        VALUES ('$num', '" . $img_pokemon . "', '$nombre', '" . $img_tipo . "', '$descripcion')");
+        $this->database->execute(
+            "INSERT INTO pokemones(numero_identificador,imagen,nombre,tipo,descripcion)
+                VALUES ('$num','$pokemon','$nombre','$tipo','$descripcion')"
+        );
     }
+
     public function deletePokemones($pokemon_id)
     {
         $this->database->execute("DELETE FROM pokemones WHERE id = $pokemon_id");

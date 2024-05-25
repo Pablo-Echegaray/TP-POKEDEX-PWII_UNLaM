@@ -29,7 +29,7 @@
         $result = crearConexionBD(obtenerPokemon($pokemon_id));
         if(!is_string($result)) {
             $pokemon = mysqli_fetch_assoc($result);
-            //echo $pokemon['nombre'];
+            //echo $pokemones['nombre'];
         }
     }
 

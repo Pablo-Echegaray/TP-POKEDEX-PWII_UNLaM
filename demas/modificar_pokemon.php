@@ -10,7 +10,7 @@ function validarPokemon(){
         if(!is_string($result) && !is_bool($result)){
             if(mysqli_num_rows($result) == 1) {
                 $pokemon = mysqli_fetch_assoc($result);
-                //echo json_encode($pokemon);
+                //echo json_encode($pokemones);
                 return $pokemon;
             }else{
                 echo "No se encontró el Pokémon.";
@@ -27,7 +27,7 @@ function validarPokemon(){
 }
 function generar_pokemon(){
     $pokemonValido = validarPokemon();
-    $imagenPokemon = actualizar_imagen_pokemon($pokemonValido['imagen'], 'pokemon', 'pokemones');
+    $imagenPokemon = actualizar_imagen_pokemon($pokemonValido['imagen'], 'pokemones', 'pokemones');
     $imagenTipo = actualizar_imagen_pokemon($pokemonValido['tipo'], 'tipo', 'tipos');
     if(!is_bool($pokemonValido)){
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -35,7 +35,7 @@ function generar_pokemon(){
                 "id" => $pokemonValido['id'],
                 "numero" => $_POST['numero'],
                 "nombre"   => $_POST['nombre'],
-                "pokemon"  => $imagenPokemon,
+                "pokemones"  => $imagenPokemon,
                 "tipo"  => $imagenTipo,
                 "descripcion"  => $_POST['descripcion']
             );
@@ -86,10 +86,10 @@ function actualizarPokemon(){
                header("Location: index.php");
                exit;
            }else{
-               echo "Hubo un error al actualizar el pokemon.";
+               echo "Hubo un error al actualizar el pokemones.";
            }
        }else{
-           echo "Error al actualizar el pokemon. La consulta no devolvió un booleano.";
+           echo "Error al actualizar el pokemones. La consulta no devolvió un booleano.";
        }
     }else{
         echo "Pokemon no actualizado. La consulta devolvío un string.";
