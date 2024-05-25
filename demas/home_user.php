@@ -48,7 +48,7 @@
         </div>
     </form>
 <?php
-     //include_once "busqueda.php";
+     //include_once "busqueda.mustache";
 ?>
 
         <a href="alta_pokemon.php" class="d-block">

@@ -31,15 +31,15 @@ class PokemonsController
 
     public function procesarAlta()
     {
-        //falta
-        $num = $_POST["numero"];
-        $nombre = $_POST["nombre"];
-        $img_pokemon = $_FILES["pokemon"]["name"];
-        $img_tipo = $_FILES["tipo"]["name"]; 
-        $descripcion = $_POST["descripcion"];
-
-        $this->model->addPokemones($num, $nombre, $img_pokemon, $img_tipo, $descripcion);
-        header("location:");
+        $num = $_POST["numero"] ?? "";
+        $nombre = $_POST["nombre"] ?? "";
+        $pokemon = $_FILES["pokemon"] ? $_FILES["pokemon"]["name"] : "";
+        $tipo = $_FILES["tipo"] ? $_FILES["tipo"]["name"] : "";
+        $img_pokemon = "img/pokemones/".$pokemon;
+        $img_tipo = "img/tipos/".$tipo;
+        $descripcion = $_POST["descripcion"] ?? "";
+        $this->model->addPokemones($num, $img_pokemon, $nombre, $img_tipo, $descripcion);
+        header("Location: index.php");
         exit();
     }
 
@@ -51,7 +51,7 @@ class PokemonsController
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
         } else {
-            echo "Id de pokemon no válido: ";
+            echo "Id de pokemones no válido: ";
             exit;
         }
     }

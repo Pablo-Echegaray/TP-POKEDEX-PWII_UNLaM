@@ -19,7 +19,7 @@ function updatePokemon($pokemon){
     $id = intval($pokemon['id']);
     $numero = intval($pokemon['numero']);
     $nombre = $pokemon['nombre'];
-    $pokemon_img = $pokemon['pokemon'];
+    $pokemon_img = $pokemon['pokemones'];
     $tipo = $pokemon['tipo'];
     $descripcion = $pokemon['descripcion'];
 

@@ -45,12 +45,12 @@
     foreach ($result as $row) {
     //while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr onclick=\"window.location='info_pokemon.php?id=" . $row['id'] . "'\" style=\"cursor: pointer;\">";
-        echo "<th scope='row' class='text-center w-25'><img src='" . $row['imagen'] . "' class='imagen-pokemon'></th>";
+        echo "<th scope='row' class='text-center w-25'><img src='" . $row['imagen'] . "' class='imagen-pokemones'></th>";
         echo "<td class='text-center'>";
 
         $tipo = $row['tipo'];
 
-        echo "<img src='" . $tipo . "' class='imagen-pokemon'>";
+        echo "<img src='" . $tipo . "' class='imagen-pokemones'>";
 
         echo "</td>";
         echo "<td class='text-center'>" . $row['numero_identificador'] . "</td>";
