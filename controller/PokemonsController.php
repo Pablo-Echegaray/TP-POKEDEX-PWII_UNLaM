@@ -20,6 +20,7 @@ class PokemonsController
             $pokemones = $this->model->getPokemones();
         }
 
+        $adminLogeado = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
         $this->presenter->render("view/pokemonsView.mustache", ["pokemones" => $pokemones]);
     }
 
@@ -59,6 +60,26 @@ class PokemonsController
     {
         $this->presenter->render("view/modificarPokemonsView.mustache");
     }
-}
 
-?>
+    public function inicioSesion(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["user"]) && isset($_POST["pass"])) {
+                $user = $_POST["user"];
+                $pass = $_POST["pass"];
+
+                $admin = $this->model->getAdministrador($user, $pass);
+
+                if ($admin) {
+                    $_SESSION["admin_logged_in"] = true;
+                    $_SESSION["username"] = $user;
+        
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    header("Location: index.php");
+                    exit();
+                }
+            }
+        }
+    }
+}

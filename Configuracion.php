@@ -38,5 +38,3 @@ class Configuracion{
         return new MustachePresenter("view/template");
     }
 }
-
-?>
