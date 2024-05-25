@@ -29,7 +29,13 @@
                 Pokedex
             </a>
         </h1>
-        <form action="login.php" method="post" class="flex">
+            
+    {{#esAdministrador}}
+        <h1>Hola, {{nombreUsuario}}!</h1>
+    {{/esAdministrador}}
+
+    {{^esAdministrador}}  
+        <form action="index.php?controller=Pokemons&action=esAdministrador" method="post" class="flex">
             <label class="pb-1">
                 <input type="text" placeholder="Usuario" name="user" class="form-control">
             </label>
@@ -38,6 +44,8 @@
             </label>
             <button type="submit" class="btn btn-primary mt-2"> Ingresar </button>
         </form>
+    {{/esAdministrador}}
+
     </div>
 </header>
 <main class="p-4 mt-4">

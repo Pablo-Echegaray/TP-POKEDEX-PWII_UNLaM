@@ -48,7 +48,7 @@ class PokemonsController
         if (isset($_POST['pokemon_id'])) {
             $pokemon_id = $_POST['pokemon_id'];
             $this->model->deletePokemones($pokemon_id);
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            header("Location: index.php ");
             exit();
         } else {
             echo "Id de pokemones no válido: ";
@@ -61,25 +61,24 @@ class PokemonsController
         $this->presenter->render("view/modificarPokemonsView.mustache");
     }
 
-    public function inicioSesion(){
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["user"]) && isset($_POST["pass"])) {
-                $user = $_POST["user"];
-                $pass = $_POST["pass"];
+    public function esAdministrador()
+    {
+        if (isset($_POST["user"]) && isset($_POST["pass"])) {
+            $user = $_POST["user"];
+            $pass = $_POST["pass"];
 
-                $admin = $this->model->getAdministrador($user, $pass);
+            $admin = $this->model->getAdministrador($user, $pass);
 
-                if ($admin) {
-                    $_SESSION["admin_logged_in"] = true;
-                    $_SESSION["username"] = $user;
-        
-                    header("Location: index.php");
-                    exit();
-                } else {
-                    header("Location: index.php");
-                    exit();
-                }
+            if ($admin) {
+                $_SESSION["usuario"] = $user;
+                $pokemones = $this->model->getPokemones();
+                $this->presenter->render("view/pokemonsView.mustache",["pokemones" => $pokemones, "esAdministrador" => true, "nombreUsuario" => $user]);
+            } else {
+                header("Location: index.php");
+                exit();
             }
         }
     }
+
+
 }
