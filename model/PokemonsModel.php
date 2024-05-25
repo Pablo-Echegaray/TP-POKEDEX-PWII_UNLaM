@@ -32,4 +32,7 @@ class PokemonsModel
         return $this->database->query("SELECT * FROM pokemones WHERE nombre LIKE '%$busqueda%' OR tipo LIKE '%$busqueda%' OR numero_identificador = '$busqueda'");
     }
 
+    public function getAdministrador($user, $pass){
+        return $this->database->query("SELECT * FROM administradores WHERE user = '".$user."' && pass = '".$pass."'");
+    }
 }
