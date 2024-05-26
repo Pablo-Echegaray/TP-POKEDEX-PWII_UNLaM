@@ -24,6 +24,17 @@ class PokemonsController
         $this->presenter->render("view/pokemonsView.mustache", ["pokemones" => $pokemones]);
     }
 
+    public function getInfoPokemon()
+    {
+    if (isset($_GET['pokemon_id'])) {
+        $pokemon_id = $_GET['pokemon_id'];
+        $pokemon = $this->model->getPokemon($pokemon_id);
+        $this->presenter->render("view/infoPokemonsView.mustache",["pokemones" => $pokemon]);
+    } else {
+        echo "Pokemon no encontrado.";
+    }
+    }
+
     public function add()
     {
         $this->presenter->render("view/agregarPokemonsView.mustache");
