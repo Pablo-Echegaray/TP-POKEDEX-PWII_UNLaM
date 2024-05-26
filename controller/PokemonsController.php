@@ -85,6 +85,8 @@ class PokemonsController
     public function modifyPokemon(){
         $pokemon_id = $_POST["pokemon_id"] ?? "";
         $this->model->modifyPokemon($pokemon_id);
+        header("Location: index.php");
+        exit();
     }
 
 }
