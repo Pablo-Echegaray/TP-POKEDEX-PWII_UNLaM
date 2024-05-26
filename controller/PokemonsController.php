@@ -58,7 +58,9 @@ class PokemonsController
 
     public function edit()
     {
-        $this->presenter->render("view/modificarPokemonsView.mustache");
+        $pokemon_id = isset($_POST['pokemon_id']) ? $_POST['pokemon_id'] : null;
+        $pokemon = $this->model->getPokemon($pokemon_id);
+        $this->presenter->render("view/modificarPokemonsView.mustache", ["pokemon" => $pokemon]);
     }
 
     public function esAdministrador()
@@ -80,5 +82,9 @@ class PokemonsController
         }
     }
 
+    public function modifyPokemon(){
+        $pokemon_id = $_POST["pokemon_id"] ?? "";
+        $this->model->modifyPokemon($pokemon_id);
+    }
 
 }

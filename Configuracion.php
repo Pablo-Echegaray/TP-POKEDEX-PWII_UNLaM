@@ -17,10 +17,6 @@ class Configuracion{
         return new Database($config["servername"], $config["username"], $config["password"], $config["database"]);
     }
 
-    private static function getConfig(){
-        return parse_ini_file("config/config.ini");
-    }
-
     public static function getPokemonsController(){
         return new PokemonsController(self::getPokemonsModel(), self::getPresenter());
     }
@@ -36,5 +32,9 @@ class Configuracion{
 
     public static function getPresenter(){
         return new MustachePresenter("view/template");
+    }
+
+    private static function getConfig(){
+        return parse_ini_file("config/config.ini");
     }
 }
