@@ -21,43 +21,42 @@ class PokemonsController
             $pokemones = $this->model->getPokemones();
         }
 
-        if (is_string($pokemones)){
-        $noExiste = $pokemones;
-        $pokemones = $this->model->getPokemones();
+        if (is_string($pokemones)) {
+            $noExiste = $pokemones;
+            $pokemones = $this->model->getPokemones();
         }
 
-        $adminLogeado = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
         $this->presenter->render("view/pokemonsView.mustache", ["pokemones" => $pokemones, "error" => $noExiste]);
     }
 
     public function getInfoPokemon()
     {
-    if (isset($_GET['pokemon_id'])) {
-        $pokemon_id = $_GET['pokemon_id'];
-        $pokemon = $this->model->getPokemon($pokemon_id);
-        $this->presenter->render("view/infoPokemonsView.mustache",["pokemones" => $pokemon]);
-    } else {
-        echo "Pokemon no encontrado.";
-    }
+        if (isset($_GET['pokemon_id'])) {
+            $pokemon_id = $_GET['pokemon_id'];
+            $pokemon = $this->model->getPokemon($pokemon_id);
+            $this->presenter->render("view/infoPokemonsView.mustache", ["pokemones" => $pokemon]);
+        } else {
+            echo "Pokemon no encontrado.";
+        }
     }
 
     public function add()
     {
-        $this->presenter->render("view/agregarPokemonsView.mustache");
+        $this->presenter->render("view/agregarPokemonsView.mustache", ["esAdministrador" => true, "nombreUsuario" => $_SESSION['usuario']]);
     }
 
     public function procesarAlta()
     {
-        $num = $_POST["numero"] ?? "";
-        $nombre = $_POST["nombre"] ?? "";
-        $pokemon = $_FILES["pokemon"] ? $_FILES["pokemon"]["name"] : "";
-        $tipo = $_FILES["tipo"] ? $_FILES["tipo"]["name"] : "";
-        $img_pokemon = "img/pokemones/".$pokemon;
-        $img_tipo = "img/tipos/".$tipo;
-        $descripcion = $_POST["descripcion"] ?? "";
-        $this->model->addPokemones($num, $img_pokemon, $nombre, $img_tipo, $descripcion);
-        header("Location: index.php");
-        exit();
+            $num = $_POST["numero"] ?? "";
+            $nombre = $_POST["nombre"] ?? "";
+            $pokemon = $_FILES["pokemon"] ? $_FILES["pokemon"]["name"] : "";
+            $tipo = $_FILES["tipo"] ? $_FILES["tipo"]["name"] : "";
+            $img_pokemon = "img/pokemones/" . $pokemon;
+            $img_tipo = "img/tipos/" . $tipo;
+            $descripcion = $_POST["descripcion"] ?? "";
+            $this->model->addPokemones($num, $img_pokemon, $nombre, $img_tipo, $descripcion);
+            header("Location: index.php");
+            exit();
     }
 
     public function delete()
@@ -77,7 +76,7 @@ class PokemonsController
     {
         $pokemon_id = isset($_POST['pokemon_id']) ? $_POST['pokemon_id'] : null;
         $pokemon = $this->model->getPokemon($pokemon_id);
-        $this->presenter->render("view/modificarPokemonsView.mustache", ["pokemon" => $pokemon]);
+        $this->presenter->render("view/modificarPokemonsView.mustache", ["pokemon" => $pokemon, "esAdministrador" => true, "nombreUsuario" => $_SESSION['usuario']]);
     }
 
     public function esAdministrador()
@@ -91,7 +90,7 @@ class PokemonsController
             if ($admin) {
                 $_SESSION["usuario"] = $user;
                 $pokemones = $this->model->getPokemones();
-                $this->presenter->render("view/pokemonsView.mustache",["pokemones" => $pokemones, "esAdministrador" => true, "nombreUsuario" => $user]);
+                $this->presenter->render("view/pokemonsView.mustache", ["pokemones" => $pokemones, "esAdministrador" => true, "nombreUsuario" => $user]);
             } else {
                 header("Location: index.php");
                 exit();
@@ -99,11 +98,11 @@ class PokemonsController
         }
     }
 
-    public function modifyPokemon(){
+    public function modifyPokemon()
+    {
         $pokemon_id = $_POST["pokemon_id"] ?? "";
         $this->model->modifyPokemon($pokemon_id);
         header("Location: index.php");
         exit();
     }
-
 }
