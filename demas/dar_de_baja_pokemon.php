@@ -17,7 +17,7 @@ if (isset($_POST['pokemon_id']) && is_numeric($_POST['pokemon_id'])) {
     }
 
 } else {
-    echo "Id de pokemon no válido: ";
+    echo "Id de pokemones no válido: ";
     exit;
 }
 

@@ -9,10 +9,16 @@
         
         {{#pokemones}}
             <tr>
-                <td scope='row' class='text-center w-25'><img src="{{imagen}}" class='imagen-pokemon'></td>
-                <td class='text-center' ><img src="{{tipo}}" class='imagen-pokemon'></td>
+                <td scope='row' class='text-center w-25'>
+                    <img src="{{imagen}}" class='imagen-pokemon'>
+                </td>
+                <td class='text-center' >
+                    <img src="{{tipo}}" class='imagen-pokemon'>
+                </td>
                 <td class='text-center'>{{numero_identificador}}</td>
                 <td class='text-center fw-bold'>{{nombre}}</td>
+
+                {{#esAdministrador}}
                 <td class='text-center'>
                     <div class='d-flex justify-content-center mq'>
                     <!-- EDITAR POKEMON -->
@@ -28,10 +34,15 @@
                         </form>
                     </div>
                 </td>
+                {{/esAdministrador}}
+
             </tr>
         {{/pokemones}}
 
     </table>
+
+    {{#esAdministrador}}
         <a href="index.php?controller=Pokemons&action=add" class="d-block">
             <h3 class="btn btn-success w-100 fw-bold fs-5">Agregar Pokemon</h3>
         </a>
+    {{/esAdministrador}}

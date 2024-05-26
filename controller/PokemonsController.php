@@ -31,15 +31,15 @@ class PokemonsController
 
     public function procesarAlta()
     {
-        //falta
-        $num = $_POST["numero"];
-        $nombre = $_POST["nombre"];
-        $img_pokemon = $_FILES["pokemon"]["name"];
-        $img_tipo = $_FILES["tipo"]["name"]; 
-        $descripcion = $_POST["descripcion"];
-
-        $this->model->addPokemones($num, $nombre, $img_pokemon, $img_tipo, $descripcion);
-        header("location:");
+        $num = $_POST["numero"] ?? "";
+        $nombre = $_POST["nombre"] ?? "";
+        $pokemon = $_FILES["pokemon"] ? $_FILES["pokemon"]["name"] : "";
+        $tipo = $_FILES["tipo"] ? $_FILES["tipo"]["name"] : "";
+        $img_pokemon = "img/pokemones/".$pokemon;
+        $img_tipo = "img/tipos/".$tipo;
+        $descripcion = $_POST["descripcion"] ?? "";
+        $this->model->addPokemones($num, $img_pokemon, $nombre, $img_tipo, $descripcion);
+        header("Location: index.php");
         exit();
     }
 
@@ -48,38 +48,45 @@ class PokemonsController
         if (isset($_POST['pokemon_id'])) {
             $pokemon_id = $_POST['pokemon_id'];
             $this->model->deletePokemones($pokemon_id);
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            header("Location: index.php ");
             exit();
         } else {
-            echo "Id de pokemon no válido: ";
+            echo "Id de pokemones no válido: ";
             exit;
         }
     }
 
     public function edit()
     {
-        $this->presenter->render("view/modificarPokemonsView.mustache");
+        $pokemon_id = isset($_POST['pokemon_id']) ? $_POST['pokemon_id'] : null;
+        $pokemon = $this->model->getPokemon($pokemon_id);
+        $this->presenter->render("view/modificarPokemonsView.mustache", ["pokemon" => $pokemon]);
     }
 
-    public function inicioSesion(){
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["user"]) && isset($_POST["pass"])) {
-                $user = $_POST["user"];
-                $pass = $_POST["pass"];
+    public function esAdministrador()
+    {
+        if (isset($_POST["user"]) && isset($_POST["pass"])) {
+            $user = $_POST["user"];
+            $pass = $_POST["pass"];
 
-                $admin = $this->model->getAdministrador($user, $pass);
+            $admin = $this->model->getAdministrador($user, $pass);
 
-                if ($admin) {
-                    $_SESSION["admin_logged_in"] = true;
-                    $_SESSION["username"] = $user;
-        
-                    header("Location: index.php");
-                    exit();
-                } else {
-                    header("Location: index.php");
-                    exit();
-                }
+            if ($admin) {
+                $_SESSION["usuario"] = $user;
+                $pokemones = $this->model->getPokemones();
+                $this->presenter->render("view/pokemonsView.mustache",["pokemones" => $pokemones, "esAdministrador" => true, "nombreUsuario" => $user]);
+            } else {
+                header("Location: index.php");
+                exit();
             }
         }
     }
+
+    public function modifyPokemon(){
+        $pokemon_id = $_POST["pokemon_id"] ?? "";
+        $this->model->modifyPokemon($pokemon_id);
+        header("Location: index.php");
+        exit();
+    }
+
 }

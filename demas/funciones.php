@@ -87,13 +87,13 @@ function agregarPokemonBD($num,$nombre,$img_pokemon,$img_tipo,$descripcion){
         exit();
         //mostrarPokemones($conexion);
     } else {
-        die("No se agrego el pokemon");
+        die("No se agrego el pokemones");
     }
 }
 
 $numero = validarNumero($_POST["numero"]);
 $nombre = validarNombre($_POST["nombre"]);
-$pokemon = validarImagen($_FILES["pokemon"]);
+$pokemon = validarImagen($_FILES["pokemones"]);
 $tipo = validarImagen($_FILES["tipo"]);
 $descripcion = validarDescripcion($_POST["descripcion"]);
 agregarImagenAlPoryecto($pokemon, "pokemones");
