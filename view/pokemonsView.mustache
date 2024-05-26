@@ -1,4 +1,13 @@
 
+<main class="p-4 mt-4">
+    <form action="index.php?controller=Pokemons&action=get" method="get" class="d-flex flex-column align-items-center">
+        <h2 class="centrar m-0 fs-4">Busca tu POKEMON!</h2>
+        <div class="input-group">
+            <input type="search" name="buscar" placeholder="Ingrese el nombre, tipo o número de pokemon" class="form-control w-75 p-3">
+            <button type="submit" class="btn text-light fw-bold w-25">¿Quien es este pokemon?</button>
+        </div>
+    </form>
+    
     <table class='table table-striped'>
         <tr>
             <th scope='col' class='text-primary text-center'>Imagen</th>
@@ -6,8 +15,11 @@
             <th scope='col' class='text-primary text-center'>Numero</th>
             <th scope='col' class='text-primary text-center'>Nombre</th>
         </tr>
-        
+        {{#error}}
+            <h3>{{error}}</h3>
+        {{/error}}
         {{#pokemones}}
+
             <tr>
                 <td scope='row' class='text-center w-25'>
                     <img src="{{imagen}}" class='imagen-pokemon'>
@@ -46,3 +58,5 @@
             <h3 class="btn btn-success w-100 fw-bold fs-5">Agregar Pokemon</h3>
         </a>
     {{/esAdministrador}}
+
+    </main>

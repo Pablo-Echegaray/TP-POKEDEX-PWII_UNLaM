@@ -33,7 +33,7 @@ class PokemonsModel
 
     public function searchPokemones($busqueda)
     {
-        return $this->database->query("SELECT * FROM pokemones WHERE nombre LIKE '%$busqueda%' OR tipo LIKE '%$busqueda%' OR numero_identificador = '$busqueda'");
+        return $this->database->query("SELECT * FROM pokemones WHERE nombre LIKE '%$busqueda%' OR tipo LIKE '%$busqueda%' OR numero_identificador = '$busqueda'") ? $this->database->query("SELECT * FROM pokemones WHERE nombre LIKE '%$busqueda%' OR tipo LIKE '%$busqueda%' OR numero_identificador = '$busqueda'"): "El pokemon no existe";
     }
 
     public function getAdministrador($user, $pass){
