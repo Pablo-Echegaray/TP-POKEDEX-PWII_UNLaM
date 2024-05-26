@@ -13,6 +13,7 @@ class PokemonsController
     public function get()
     {
         $busqueda = isset($_GET['buscar']) ? $_GET['buscar'] : null;
+        $noExiste = "";
 
         if ($busqueda !== null) {
             $pokemones = $this->model->searchPokemones($busqueda);
@@ -20,8 +21,13 @@ class PokemonsController
             $pokemones = $this->model->getPokemones();
         }
 
+        if (is_string($pokemones)){
+        $noExiste = $pokemones;
+        $pokemones = $this->model->getPokemones();
+        }
+
         $adminLogeado = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
-        $this->presenter->render("view/pokemonsView.mustache", ["pokemones" => $pokemones]);
+        $this->presenter->render("view/pokemonsView.mustache", ["pokemones" => $pokemones, "error" => $noExiste]);
     }
 
     public function getInfoPokemon()

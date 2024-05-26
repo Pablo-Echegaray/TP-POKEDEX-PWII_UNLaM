@@ -6,8 +6,11 @@
             <th scope='col' class='text-primary text-center'>Numero</th>
             <th scope='col' class='text-primary text-center'>Nombre</th>
         </tr>
-        
+        {{#error}}
+            <h3>{{error}}</h3>
+        {{/error}}
         {{#pokemones}}
+
             <tr>
                 <td scope='row' class='text-center w-25'>
                     <img src="{{imagen}}" class='imagen-pokemon'>
