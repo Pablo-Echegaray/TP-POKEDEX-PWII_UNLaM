@@ -16,7 +16,7 @@
                     <img src="{{tipo}}" class='imagen-pokemon'>
                 </td>
                 <td class='text-center'>{{numero_identificador}}</td>
-                <td class='text-center fw-bold'>{{nombre}}</td>
+                <td class='text-center fw-bold'><a href='index.php?controller=Pokemons&action=getInfoPokemon&pokemon_id={{id}}' style='color: inherit; font-weight: bold; cursor: pointer;'>{{nombre}}</a></td>
 
                 {{#esAdministrador}}
                 <td class='text-center'>
