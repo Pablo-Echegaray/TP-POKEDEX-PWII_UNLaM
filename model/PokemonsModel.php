@@ -61,7 +61,7 @@ class PokemonsModel
             $file_tmp = $_FILES[$name]['tmp_name'];
             $file_type = $_FILES[$name]['type'];
 
-            $upload_folder = './img/' . $folder;
+            $upload_folder = './public/img/' . $folder;
             $path_img = $upload_folder."/".$file_name;
 
             if(move_uploaded_file($file_tmp,$path_img)){
@@ -80,11 +80,17 @@ class PokemonsModel
 
     private function generateModifiedPokemon($pokemon_id){
         $pokemon = $this->getPokemon($pokemon_id);
+        $numeroIdentificador = $_POST['numero'];
+        if ($numeroIdentificador <= 151) {
+            $numeroIdentificador += 152;
+        }
+
+
         $imagenPokemon = $this->updateImgPokemon($pokemon['imagen'], 'pokemon', 'pokemones');
         $imagenTipo = $this->updateImgPokemon($pokemon['tipo'], 'tipo', 'tipos');
         $modifiedPokemon = array(
             "id" => $pokemon['id'],
-            "numero" => $_POST['numero'],
+            "numero" => $numeroIdentificador,
             "nombre"   => $_POST['nombre'],
             "pokemon"  => $imagenPokemon,
             "tipo"  => $imagenTipo,
