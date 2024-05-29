@@ -24,6 +24,10 @@ class PokemonsModel
             "INSERT INTO pokemones(numero_identificador,imagen,nombre,tipo,descripcion)
                 VALUES ('$num','$pokemon','$nombre','$tipo','$descripcion')"
         );
+    } 
+
+    public function existePokemon($num){
+        return $this->database->query("SELECT * FROM pokemones WHERE numero_identificador = $num");
     }
 
     public function deletePokemones($pokemon_id)
@@ -69,7 +73,6 @@ class PokemonsModel
             }else{
                 echo "El archivo " . $file_name ." no se pudo subir.";
             }
-            //exit();
 
         }
         else{
