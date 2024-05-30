@@ -24,6 +24,10 @@ class PokemonsModel
             "INSERT INTO pokemones(numero_identificador,imagen,nombre,tipo,descripcion)
                 VALUES ('$num','$pokemon','$nombre','$tipo','$descripcion')"
         );
+    } 
+
+    public function existePokemon($num){
+        return $this->database->query("SELECT * FROM pokemones WHERE numero_identificador = $num");
     }
 
     public function deletePokemones($pokemon_id)
@@ -54,14 +58,13 @@ class PokemonsModel
     }
 
     private function updateImgPokemon($actual_path_img, $name, $folder){
-        // Verificar si se ha enviado un archivo
         if (isset($_FILES[$name]) && $_FILES[$name]['size'] > 0){
             $file_name = $_FILES[$name]['name'];
             $file_size = $_FILES[$name]['size'];
             $file_tmp = $_FILES[$name]['tmp_name'];
             $file_type = $_FILES[$name]['type'];
 
-            $upload_folder = './img/' . $folder;
+            $upload_folder = './public/img/' . $folder;
             $path_img = $upload_folder."/".$file_name;
 
             if(move_uploaded_file($file_tmp,$path_img)){
@@ -69,7 +72,6 @@ class PokemonsModel
             }else{
                 echo "El archivo " . $file_name ." no se pudo subir.";
             }
-            //exit();
 
         }
         else{
@@ -80,11 +82,17 @@ class PokemonsModel
 
     private function generateModifiedPokemon($pokemon_id){
         $pokemon = $this->getPokemon($pokemon_id);
+        $numeroIdentificador = $_POST['numero'];
+        if ($numeroIdentificador <= 151) {
+            $numeroIdentificador += 152;
+        }
+
+
         $imagenPokemon = $this->updateImgPokemon($pokemon['imagen'], 'pokemon', 'pokemones');
         $imagenTipo = $this->updateImgPokemon($pokemon['tipo'], 'tipo', 'tipos');
         $modifiedPokemon = array(
             "id" => $pokemon['id'],
-            "numero" => $_POST['numero'],
+            "numero" => $numeroIdentificador,
             "nombre"   => $_POST['nombre'],
             "pokemon"  => $imagenPokemon,
             "tipo"  => $imagenTipo,

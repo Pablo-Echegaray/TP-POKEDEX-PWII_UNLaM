@@ -1,6 +1,6 @@
 
 <main class="p-4 mt-4">
-    <form action="index.php?controller=Pokemons&action=get" method="get" class="d-flex flex-column align-items-center">
+    <form action="pokemons/search" method="get" class="d-flex flex-column align-items-center">
         <h2 class="centrar m-0 fs-4">Busca tu POKEMON!</h2>
         <div class="input-group">
             <input type="search" name="buscar" placeholder="Ingrese el nombre, tipo o número de pokemon" class="form-control w-75 p-3">
@@ -22,25 +22,25 @@
 
             <tr>
                 <td scope='row' class='text-center w-25'>
-                    <img src="{{imagen}}" class='imagen-pokemon'>
+                    <img src="/TP-POKEDEX-PWII_UNLaM/{{imagen}}" class='imagen-pokemon'>
                 </td>
                 <td class='text-center' >
-                    <img src="{{tipo}}" class='imagen-pokemon'>
+                    <img src="/TP-POKEDEX-PWII_UNLaM/{{tipo}}" class='imagen-pokemon'>
                 </td>
                 <td class='text-center'>{{numero_identificador}}</td>
-                <td class='text-center fw-bold'><a href='index.php?controller=Pokemons&action=getInfoPokemon&pokemon_id={{id}}' style='color: inherit; font-weight: bold; cursor: pointer;'>{{nombre}}</a></td>
+                <td class='text-center fw-bold'><a href='/TP-POKEDEX-PWII_UNLaM/pokemons/getInfoPokemon&pokemon_id={{id}}' style='color: inherit; font-weight: bold; cursor: pointer;'>{{nombre}}</a></td>
 
                 {{#esAdministrador}}
                 <td class='text-center'>
                     <div class='d-flex justify-content-center mq'>
                     <!-- EDITAR POKEMON -->
-                        <form action='index.php?controller=Pokemons&action=edit' method='post'>
+                        <form action='edit' method='post'>
                             <input type="hidden" name="pokemon_id" value="{{id}}">
                             <button type='submit' class='text-light btn btn-info'>Editar</button>
                         </form>
 
                     <!-- ELIMINAR POKEMON -->
-                        <form action='index.php?controller=Pokemons&action=delete' method='post'>
+                        <form action='delete' method='post'>
                             <input type="hidden" name="pokemon_id" value="{{id}}">
                             <button type='submit' class='text-light btn btn-danger' style='background-color: firebrick!important; border-color: firebrick!important;'>Eliminar</button>
                         </form>
@@ -54,7 +54,7 @@
     </table>
 
     {{#esAdministrador}}
-        <a href="index.php?controller=Pokemons&action=add" class="d-block">
+        <a href="add" class="d-block">
             <h3 class="btn btn-success w-100 fw-bold fs-5">Agregar Pokemon</h3>
         </a>
     {{/esAdministrador}}
