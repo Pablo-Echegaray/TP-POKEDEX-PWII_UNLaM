@@ -1,12 +1,12 @@
 {{#pokemones}}
 <div class="p-4 mt-4 info-flex">
     <div>
-        <img src="{{ imagen }}" class="w-100 info-img">
+        <img src="/TP-POKEDEX-PWII_UNLaM/{{ imagen }}" class="w-100 info-img">
     </div>
 
     <div class="d-flex flex-column justify-content-evenly align-items-center">
         <div>
-            <img class="img-tipo" src="{{ tipo }}">
+            <img class="img-tipo" src="/TP-POKEDEX-PWII_UNLaM/{{ tipo }}">
         </div>
 
         <h3>{{ numero_identificador }} {{ nombre }}</h3>
@@ -14,6 +14,7 @@
         <p>
             {{ descripcion }}
         </p>
+        <a href="get" class="btn btn-primary mt-2">Volver</a>
     </div>
 </div>
 {{/pokemones}}
