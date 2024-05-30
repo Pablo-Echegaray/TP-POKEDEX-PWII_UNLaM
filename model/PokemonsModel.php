@@ -58,7 +58,6 @@ class PokemonsModel
     }
 
     private function updateImgPokemon($actual_path_img, $name, $folder){
-        // Verificar si se ha enviado un archivo
         if (isset($_FILES[$name]) && $_FILES[$name]['size'] > 0){
             $file_name = $_FILES[$name]['name'];
             $file_size = $_FILES[$name]['size'];

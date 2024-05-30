@@ -57,12 +57,13 @@ class PokemonsController
 
     public function getInfoPokemon()
     {
-        if (isset($_GET['pokemon_id'])) {
-            $pokemon_id = $_GET['pokemon_id'];
-            $pokemon = $this->model->getPokemon($pokemon_id);
-            $this->presenter->render("view/infoPokemonsView.mustache", ["pokemones" => $pokemon]);
+        $pokemon_id = $_GET['pokemon_id'];
+        $pokemon = $this->model->getPokemon($pokemon_id);
+        
+        if (isset($_SESSION["usuario"])) {
+            $this->presenter->render("view/infoPokemonsView.mustache", ["pokemones" => $pokemon, "esAdministrador" => true, "nombreUsuario" => $_SESSION['usuario']]);
         } else {
-            echo "Pokemon no encontrado.";
+            $this->presenter->render("view/infoPokemonsView.mustache", ["pokemones" => $pokemon]);
         }
     }
 
@@ -98,21 +99,17 @@ class PokemonsController
 
     public function delete()
     {
-        if (isset($_POST['pokemon_id'])) {
-            $pokemon_id = $_POST['pokemon_id'];
-            $this->model->deletePokemones($pokemon_id);
-            $this->renderViewAdministrador();
-            return 0;
-        } else {
-            echo "Id de pokemones no válido: ";
-            return 0;
-        }
+        $pokemon_id = $_POST['pokemon_id'];
+
+        $this->model->deletePokemones($pokemon_id);
+        $this->renderViewAdministrador();
     }
 
     public function edit()
     {
         $pokemon_id = isset($_POST['pokemon_id']) ? $_POST['pokemon_id'] : null;
         $pokemon = $this->model->getPokemon($pokemon_id);
+
         $this->presenter->render("view/modificarPokemonsView.mustache", ["pokemon" => $pokemon, "esAdministrador" => true, "nombreUsuario" => $_SESSION['usuario']]);
     }
 
@@ -120,6 +117,7 @@ class PokemonsController
     public function modifyPokemon()
     {
         $pokemon_id = $_POST["pokemon_id"] ?? "";
+        
         $this->model->modifyPokemon($pokemon_id);
         $this->renderViewAdministrador();
     }
